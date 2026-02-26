@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>akkey_cream | 八戸の流しの占い師</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cyan: #00f0ff;
+  --magenta: #ff00ff;
+  --gold: #d4af37;
+  --gold-light: #f0d060;
+  --gold-dark: #a67c00;
+  --deep-blue: #0a0a2e;
+  --dark: #050510;
+  --card-w: 100px;
+  --card-h: 150px;
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-sans: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--dark);
+  color: #e0e0f0;
+  overflow-x: hidden;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ===== Stars Background ===== */
+.stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle var(--dur) ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: var(--bright); }
+}
+
+/* ===== Gold Gradient Text ===== */
+.gold-gradient {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark), var(--gold-light));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== Neon Utilities ===== */
+.neon-cyan {
+  color: var(--cyan);
+  text-shadow: 0 0 7px var(--cyan), 0 0 20px var(--cyan), 0 0 42px var(--cyan), 0 0 80px rgba(0,240,255,.3);
+}
+.neon-magenta {
+  color: var(--magenta);
+  text-shadow: 0 0 7px var(--magenta), 0 0 20px var(--magenta), 0 0 42px var(--magenta), 0 0 80px rgba(255,0,255,.3);
+}
+.neon-gold {
+  color: var(--gold-light);
+  text-shadow: 0 0 7px var(--gold), 0 0 20px var(--gold), 0 0 42px rgba(212,175,55,.4);
+}
+.neon-box-gold {
+  border: 1px solid rgba(212,175,55,.4);
+  box-shadow: 0 0 15px rgba(212,175,55,.1), inset 0 0 15px rgba(212,175,55,.05);
+}
+.neon-box-cyan {
+  border: 1px solid rgba(0,240,255,.25);
+  box-shadow: 0 0 12px rgba(0,240,255,.08), inset 0 0 12px rgba(0,240,255,.05);
+}
+.neon-box-magenta {
+  border: 1px solid rgba(255,0,255,.25);
+  box-shadow: 0 0 12px rgba(255,0,255,.08), inset 0 0 12px rgba(255,0,255,.05);
+}
+
+/* ===== Elegant Divider ===== */
+.elegant-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 400px;
+}
+.elegant-divider::before,
+.elegant-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.elegant-divider span {
+  color: var(--gold);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* ===== Section Base ===== */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 24px;
+}
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.section-title {
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 300;
+  margin-bottom: 16px;
+  letter-spacing: .15em;
+}
+.section-subtitle {
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: clamp(.85rem, 2vw, 1rem);
+  color: rgba(255,255,255,.35);
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+
+/* ===== Hero ===== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 80%, rgba(30,0,80,.4) 0%, transparent 60%),
+              radial-gradient(ellipse at 30% 20%, rgba(0,50,100,.2) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 40%, rgba(60,30,0,.15) 0%, transparent 40%),
+              var(--dark);
+  padding: 40px 24px;
+}
+#hero .hero-ornament-top,
+#hero .hero-ornament-bottom {
+  font-family: var(--font-serif);
+  color: var(--gold);
+  opacity: .4;
+  font-size: 1.2rem;
+  letter-spacing: 1em;
+  margin: 12px 0;
+}
+#hero .moon {
+  font-size: clamp(3rem, 10vw, 5rem);
+  margin-bottom: 24px;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(212,175,55,.4));
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+#hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 7vw, 4rem);
+  font-weight: 300;
+  letter-spacing: .2em;
+  margin-bottom: 16px;
+  animation: neonPulse 3s ease-in-out infinite;
+}
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 0 0 7px var(--cyan), 0 0 20px var(--cyan), 0 0 42px var(--cyan), 0 0 80px rgba(0,240,255,.3);
+  }
+  50% {
+    text-shadow: 0 0 10px var(--cyan), 0 0 30px var(--cyan), 0 0 60px var(--cyan), 0 0 100px rgba(0,240,255,.5);
+  }
+}
+#hero .subtitle {
+  font-size: clamp(.9rem, 2.5vw, 1.15rem);
+  color: rgba(255,255,255,.55);
+  margin-bottom: 50px;
+  letter-spacing: .25em;
+  font-weight: 300;
+}
+.hero-cta {
+  display: inline-block;
+  padding: 18px 56px;
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  color: var(--gold-light);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: .95rem;
+  font-weight: 400;
+  letter-spacing: .2em;
+  transition: all .4s;
+  box-shadow: 0 0 20px rgba(212,175,55,.15);
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+}
+.hero-cta::before,
+.hero-cta::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--gold);
+  border-style: solid;
+  transition: all .4s;
+}
+.hero-cta::before {
+  top: -1px; left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.hero-cta::after {
+  bottom: -1px; right: -1px;
+  border-width: 0 1px 1px 0;
+}
+.hero-cta:hover {
+  background: rgba(212,175,55,.08);
+  box-shadow: 0 0 40px rgba(212,175,55,.25);
+  color: #fff;
+}
+.hero-cta:hover::before { top: -6px; left: -6px; }
+.hero-cta:hover::after { bottom: -6px; right: -6px; }
+
+/* ===== Profile ===== */
+#profile {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--deep-blue) 100%);
+}
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  padding: 48px 36px;
+  border-radius: 2px;
+  background: rgba(10,10,46,.4);
+  backdrop-filter: blur(16px);
+  position: relative;
+}
+.profile-card::before {
+  content: "";
+  position: absolute;
+  top: 12px; left: 12px; right: 12px; bottom: 12px;
+  border: 1px solid rgba(212,175,55,.12);
+  pointer-events: none;
+}
+@media (min-width: 640px) {
+  .profile-card { flex-direction: row; align-items: flex-start; padding: 56px 48px; }
+}
+.profile-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,.08), transparent),
+              linear-gradient(135deg, var(--deep-blue), #1a1040);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(212,175,55,.4);
+  box-shadow: 0 0 30px rgba(212,175,55,.15);
+  position: relative;
+}
+.profile-avatar::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,175,55,.15);
+}
+.profile-info { flex: 1; }
+.profile-info h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+.profile-info .profile-title-sub {
+  color: var(--gold);
+  font-size: .85rem;
+  margin-bottom: 20px;
+  letter-spacing: .15em;
+  font-weight: 300;
+}
+.profile-info p {
+  color: rgba(255,255,255,.65);
+  font-size: .92rem;
+  margin-bottom: 14px;
+  font-weight: 300;
+}
+.profile-detail {
+  font-size: .85rem !important;
+  color: rgba(255,255,255,.5) !important;
+  margin-top: 12px !important;
+  padding: 16px 0;
+  border-top: 1px solid rgba(212,175,55,.12);
+  border-bottom: 1px solid rgba(212,175,55,.12);
+}
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.profile-tags span {
+  padding: 5px 16px;
+  border-radius: 0;
+  font-size: .75rem;
+  letter-spacing: .08em;
+  border: 1px solid rgba(212,175,55,.3);
+  color: var(--gold);
+  background: rgba(212,175,55,.04);
+}
+.profile-insta {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--gold-light);
+  text-decoration: none;
+  font-size: .85rem;
+  letter-spacing: .08em;
+  border: 1px solid rgba(212,175,55,.3);
+  padding: 8px 24px;
+  transition: all .4s;
+}
+.profile-insta:hover {
+  background: rgba(212,175,55,.08);
+  box-shadow: 0 0 20px rgba(212,175,55,.15);
+}
+
+/* ===== Tarot Demo ===== */
+#tarot {
+  background: radial-gradient(ellipse at 50% 30%, rgba(40,0,80,.3) 0%, transparent 60%),
+              var(--deep-blue);
+}
+.tarot-intro {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  color: rgba(255,255,255,.55);
+  font-size: .92rem;
+  font-weight: 300;
+}
+.tarot-instruction {
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 300;
+  letter-spacing: .1em;
+  margin-bottom: 30px;
+  animation: breathe 3s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { opacity: .6; }
+  50% { opacity: 1; }
+}
+
+/* Card Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--card-w));
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 40px;
+  perspective: 1000px;
+}
+@media (min-width: 640px) {
+  :root { --card-w: 110px; --card-h: 165px; }
+}
+
+/* Single Card */
+.tarot-card {
+  width: var(--card-w);
+  height: var(--card-h);
+  cursor: pointer;
+  perspective: 800px;
+  transition: transform .3s;
+}
+.tarot-card:hover:not(.flipped):not(.dimmed) {
+  transform: translateY(-8px);
+}
+.tarot-card.dimmed {
+  opacity: .2;
+  pointer-events: none;
+  filter: grayscale(.8) brightness(.5);
+}
+.tarot-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .8s cubic-bezier(.4,.2,.2,1);
+  transform-style: preserve-3d;
+}
+.tarot-card.flipped .tarot-card-inner {
+  transform: rotateY(180deg);
+}
+.tarot-card-front, .tarot-card-back {
+  position: absolute;
+  width: 100%; height: 100%;
+  border-radius: 4px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card Back (face-down) */
+.tarot-card-back {
+  background: linear-gradient(135deg, #1a0a3e, #0a0a2e);
+  border: 1px solid rgba(212,175,55,.5);
+  box-shadow: 0 0 12px rgba(212,175,55,.15);
+  overflow: hidden;
+}
+.tarot-card-back::before {
+  content: "";
+  position: absolute;
+  width: 65%; height: 65%;
+  border: 1px solid rgba(212,175,55,.2);
+  border-radius: 50%;
+  animation: cardSpin 12s linear infinite;
+}
+.tarot-card-back::after {
+  content: "✦";
+  font-size: 1.6rem;
+  color: var(--gold);
+  text-shadow: 0 0 10px var(--gold);
+}
+@keyframes cardSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Card Front (face-up) */
+.tarot-card-front {
+  background: linear-gradient(160deg, #1a1050, #0d0d30);
+  border: 1px solid var(--gold);
+  box-shadow: 0 0 15px rgba(212,175,55,.2);
+  transform: rotateY(180deg);
+  padding: 8px;
+  text-align: center;
+  gap: 4px;
+}
+.card-number {
+  font-family: var(--font-serif);
+  font-size: .62rem;
+  color: var(--gold);
+  letter-spacing: .12em;
+}
+.card-symbol {
+  font-size: 2rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 8px rgba(212,175,55,.4));
+}
+.card-name {
+  font-size: .72rem;
+  color: #fff;
+  letter-spacing: .08em;
+  font-weight: 500;
+}
+.card-name-en {
+  font-family: var(--font-serif);
+  font-size: .55rem;
+  color: rgba(255,255,255,.35);
+  font-style: italic;
+}
+
+/* Result Overlay */
+.result-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(5,5,16,.94);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  animation: fadeIn .5s;
+}
+.result-overlay.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.result-box {
+  background: linear-gradient(160deg, rgba(30,10,60,.9), rgba(10,10,40,.95));
+  border: 1px solid rgba(212,175,55,.4);
+  box-shadow: 0 0 60px rgba(212,175,55,.08), inset 0 0 60px rgba(0,0,0,.3);
+  border-radius: 2px;
+  padding: 48px 36px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  animation: slideUp .6s ease-out;
+  position: relative;
+}
+.result-box::before {
+  content: "";
+  position: absolute;
+  top: 10px; left: 10px; right: 10px; bottom: 10px;
+  border: 1px solid rgba(212,175,55,.1);
+  pointer-events: none;
+}
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.result-box .result-symbol {
+  font-size: 4rem;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 25px rgba(212,175,55,.4));
+}
+.result-box .result-number {
+  font-family: var(--font-serif);
+  font-size: .85rem;
+  color: var(--gold);
+  letter-spacing: .3em;
+  margin-bottom: 6px;
+}
+.result-box .result-name {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: .1em;
+  margin-bottom: 4px;
+}
+.result-box .result-name-en {
+  font-family: var(--font-serif);
+  font-size: .85rem;
+  color: rgba(255,255,255,.35);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.result-box .result-message {
+  font-size: .95rem;
+  line-height: 2;
+  color: rgba(255,255,255,.75);
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+.result-box .result-keyword {
+  display: inline-block;
+  padding: 8px 24px;
+  border: 1px solid rgba(0,240,255,.3);
+  color: var(--cyan);
+  font-size: .82rem;
+  letter-spacing: .08em;
+  margin-bottom: 32px;
+}
+.result-cta {
+  display: inline-block;
+  padding: 16px 44px;
+  background: linear-gradient(135deg, rgba(212,175,55,.9), rgba(166,124,0,.9));
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  font-size: .95rem;
+  letter-spacing: .12em;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(212,175,55,.25);
+  transition: all .4s;
+  margin-bottom: 18px;
+}
+.result-cta:hover {
+  box-shadow: 0 0 50px rgba(212,175,55,.4);
+  transform: translateY(-2px);
+}
+.result-close {
+  display: block;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.3);
+  font-size: .82rem;
+  cursor: pointer;
+  margin: 0 auto;
+  padding: 8px;
+  letter-spacing: .1em;
+  transition: color .3s;
+}
+.result-close:hover { color: rgba(255,255,255,.6); }
+.retry-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: none;
+  border: 1px solid rgba(212,175,55,.4);
+  color: var(--gold-light);
+  padding: 12px 36px;
+  border-radius: 0;
+  font-size: .88rem;
+  letter-spacing: .1em;
+  cursor: pointer;
+  transition: all .4s;
+}
+.retry-btn:hover {
+  background: rgba(212,175,55,.08);
+  box-shadow: 0 0 20px rgba(212,175,55,.2);
+}
+
+/* ===== How To ===== */
+#howto {
+  background: linear-gradient(180deg, var(--deep-blue) 0%, rgba(20,5,50,.6) 100%);
+}
+.howto-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .howto-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.howto-card {
+  padding: 40px 28px;
+  background: rgba(10,10,46,.35);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  transition: transform .4s, box-shadow .4s;
+  position: relative;
+}
+.howto-card::before {
+  content: "";
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 1px solid rgba(212,175,55,.08);
+  pointer-events: none;
+}
+.howto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(212,175,55,.1);
+}
+.howto-card .step-icon {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 8px rgba(212,175,55,.3));
+}
+.howto-card .step-label {
+  font-family: var(--font-serif);
+  font-size: .75rem;
+  color: var(--gold);
+  letter-spacing: .3em;
+  margin-bottom: 8px;
+}
+.howto-card .step-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  letter-spacing: .05em;
+}
+.howto-card .step-desc {
+  font-size: .85rem;
+  color: rgba(255,255,255,.5);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* ===== Menu ===== */
+#menu {
+  background: linear-gradient(180deg, rgba(20,5,50,.6) 0%, var(--dark) 100%);
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 640px) {
+  .menu-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.menu-card {
+  padding: 36px 28px;
+  background: rgba(10,10,46,.35);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  transition: transform .4s, box-shadow .4s;
+  position: relative;
+}
+.menu-card::before {
+  content: "";
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 1px solid rgba(212,175,55,.08);
+  pointer-events: none;
+}
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(212,175,55,.1);
+}
+.menu-card .menu-icon {
+  font-size: 2.2rem;
+  margin-bottom: 14px;
+  filter: drop-shadow(0 0 6px rgba(212,175,55,.3));
+}
+.menu-card h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+}
+.menu-card .menu-price {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+  letter-spacing: .05em;
+}
+.menu-card p {
+  font-size: .83rem;
+  color: rgba(255,255,255,.5);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* ===== CTA ===== */
+#cta {
+  background: radial-gradient(ellipse at 50% 50%, rgba(60,30,0,.15) 0%, transparent 60%),
+              var(--dark);
+  text-align: center;
+  padding: 120px 24px;
+}
+#cta .cta-text {
+  font-size: clamp(.92rem, 2.5vw, 1.1rem);
+  color: rgba(255,255,255,.55);
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 300;
+  line-height: 2.2;
+}
+.cta-button {
+  display: inline-block;
+  padding: 20px 64px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 0 40px rgba(212,175,55,.25), 0 0 80px rgba(212,175,55,.08);
+  transition: all .4s;
+  animation: ctaPulse 2.5s ease-in-out infinite;
+  position: relative;
+}
+.cta-button::before,
+.cta-button::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--gold-light);
+  border-style: solid;
+  transition: all .4s;
+}
+.cta-button::before {
+  top: -4px; left: -4px;
+  border-width: 1px 0 0 1px;
+}
+.cta-button::after {
+  bottom: -4px; right: -4px;
+  border-width: 0 1px 1px 0;
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(212,175,55,.25), 0 0 80px rgba(212,175,55,.08); }
+  50% { box-shadow: 0 0 50px rgba(212,175,55,.35), 0 0 100px rgba(212,175,55,.12); }
+}
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 60px rgba(212,175,55,.4), 0 0 120px rgba(212,175,55,.15);
+}
+.cta-button:hover::before { top: -8px; left: -8px; }
+.cta-button:hover::after { bottom: -8px; right: -8px; }
+.cta-note {
+  margin-top: 20px;
+  font-size: .78rem;
+  color: rgba(255,255,255,.3);
+  letter-spacing: .05em;
+}
+
+/* ===== Footer ===== */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid rgba(212,175,55,.1);
+  color: rgba(255,255,255,.25);
+  font-size: .78rem;
+  letter-spacing: .08em;
+}
+footer a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color .3s;
+}
+footer a:hover { color: var(--gold-light); }
+
+/* ===== Scroll Reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s, transform .8s;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Elegant Scrollbar ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb {
+  background: rgba(212,175,55,.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(212,175,55,.5); }
+</style>
+</head>
+<body>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-ornament-top">— ✦ —</div>
+  <div class="moon">🌙</div>
+  <h1 class="neon-cyan">akkey_cream</h1>
+  <p class="subtitle">八戸の夜を渡り歩く、流しの占い師</p>
+  <div class="hero-ornament-bottom">✦</div>
+  <br>
+  <a href="#tarot" class="hero-cta">無料タロット占いを体験する</a>
+</section>
+
+<!-- Profile -->
+<section id="profile">
+  <div class="container">
+    <h2 class="section-title gold-gradient reveal">占い師紹介</h2>
+    <p class="section-subtitle reveal">Fortune Teller</p>
+    <div class="profile-card neon-box-gold reveal">
+      <div class="profile-avatar">🔮</div>
+      <div class="profile-info">
+        <h3 class="gold-gradient">akkey_cream</h3>
+        <p class="profile-title-sub">流しの占い師 / 夜の占い師</p>
+        <p>
+          八戸市内、夜の時間帯を中心に活動する流しの占い師。
+          みろく横丁をはじめとする八戸中心街の飲み屋を渡り歩き、対面での占いを行っています。
+          お酒の席だからこそ聞ける本音に寄り添い、カードや手のひらを通じて心の奥にある答えを引き出します。
+        </p>
+        <p style="font-style:italic;color:rgba(255,255,255,.45);">
+          「占いは構えて受けるものじゃない。グラス片手に、ふと気になった時がベストタイミング。
+          今夜、あなたのいるお店に現れるかもしれません。」
+        </p>
+        <p class="profile-detail">
+          📍 活動エリア：八戸市中心街・みろく横丁 周辺<br>
+          🕐 月・木〜日 / 13:00〜ラストまで（火・水 基本お休み ※予約対応可）
+        </p>
+        <div class="profile-tags">
+          <span>タロット</span>
+          <span>手相</span>
+          <span>人相</span>
+          <span>数秘術</span>
+          <span>対面鑑定</span>
+          <span>みろく横丁</span>
+        </div>
+        <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="profile-insta">
+          Instagram: @akkey_cream
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tarot Demo -->
+<section id="tarot">
+  <div class="container">
+    <h2 class="section-title neon-cyan reveal">タロット占い体験</h2>
+    <p class="section-subtitle reveal">Tarot Reading</p>
+    <p class="tarot-intro reveal">
+      大アルカナ22枚の中から、直感で1枚を選んでください。<br>
+      今のあなたに必要なメッセージが届きます。
+    </p>
+    <p class="tarot-instruction neon-gold" id="tarot-instruction">
+      心を落ち着けて、気になるカードをタップしてください
+    </p>
+    <div class="card-grid" id="cardGrid"></div>
+    <div style="text-align:center;">
+      <button class="retry-btn" id="retryBtn" style="display:none;" onclick="resetCards()">もう一度引く</button>
+    </div>
+  </div>
+</section>
+
+<!-- Result Overlay -->
+<div class="result-overlay" id="resultOverlay">
+  <div class="result-box">
+    <div class="result-symbol" id="resultSymbol"></div>
+    <div class="result-number neon-gold" id="resultNumber"></div>
+    <div class="result-name neon-cyan" id="resultName"></div>
+    <div class="result-name-en" id="resultNameEn"></div>
+    <div class="result-message" id="resultMessage"></div>
+    <div class="result-keyword" id="resultKeyword"></div>
+    <br><br>
+    <p style="font-size:.83rem;color:rgba(255,255,255,.4);margin-bottom:18px;font-weight:300;letter-spacing:.05em;">より深い鑑定は、直接会ってこそ。<br>今夜akkeyがいるお店を確認しよう。</p>
+    <a href="https://maps.app.goo.gl/A1dXyYKpKpzVLNpr7" target="_blank" rel="noopener" class="result-cta">📍 今夜の居場所を見る</a>
+    <button class="result-close" onclick="closeResult()">閉じる</button>
+  </div>
+</div>
+
+<!-- Divider -->
+<div style="position:relative;z-index:1;padding:20px 0;">
+  <div class="elegant-divider"><span>✦</span></div>
+</div>
+
+<!-- How it works -->
+<section id="howto">
+  <div class="container">
+    <h2 class="section-title gold-gradient reveal">akkeyに会うには</h2>
+    <p class="section-subtitle reveal">How to Meet</p>
+    <div class="howto-grid">
+      <div class="howto-card neon-box-gold reveal">
+        <div class="step-icon">📍</div>
+        <div class="step-label">STEP 01</div>
+        <div class="step-title gold-gradient">居場所をチェック</div>
+        <div class="step-desc">下のボタンからGoogleマップでakkeyの現在地をリアルタイムで確認。今夜どのお店にいるかがわかります。</div>
+      </div>
+      <div class="howto-card neon-box-gold reveal">
+        <div class="step-icon">🍸</div>
+        <div class="step-label">STEP 02</div>
+        <div class="step-title gold-gradient">お店に行く</div>
+        <div class="step-desc">akkeyがいるお店に足を運んでください。飲み物を片手に、気軽に声をかけてもらえればOKです。</div>
+      </div>
+      <div class="howto-card neon-box-gold reveal">
+        <div class="step-icon">🔮</div>
+        <div class="step-label">STEP 03</div>
+        <div class="step-title gold-gradient">その場で鑑定</div>
+        <div class="step-desc">お酒の席でリラックスしながら、タロットカードがあなたへのメッセージをお届けします。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div style="position:relative;z-index:1;padding:20px 0;">
+  <div class="elegant-divider"><span>✦</span></div>
+</div>
+
+<!-- Menu -->
+<section id="menu">
+  <div class="container">
+    <h2 class="section-title gold-gradient reveal">鑑定メニュー</h2>
+    <p class="section-subtitle reveal">Menu & Price</p>
+    <div class="menu-grid">
+      <div class="menu-card neon-box-gold reveal">
+        <div class="menu-icon">🃏</div>
+        <h4 class="gold-gradient">タロット占い</h4>
+        <p class="menu-price neon-gold">¥2,000〜</p>
+        <p>大アルカナ・小アルカナを使い、あなたの悩みや未来をカードが読み解きます。恋愛・仕事・人生の選択に。</p>
+      </div>
+      <div class="menu-card neon-box-gold reveal">
+        <div class="menu-icon">✋</div>
+        <h4 class="gold-gradient">手相占い</h4>
+        <p class="menu-price neon-gold">¥1,000〜¥3,000</p>
+        <p>あなたの手のひらに刻まれた線から、性格・才能・運命の流れを読み取ります。</p>
+      </div>
+      <div class="menu-card neon-box-gold reveal">
+        <div class="menu-icon">👤</div>
+        <h4 class="gold-gradient">人相占い</h4>
+        <p class="menu-price neon-gold">¥2,000〜¥3,000</p>
+        <p>顔のパーツや表情から、あなたの本質や運気の流れを鑑定。第一印象の秘密がわかります。</p>
+      </div>
+      <div class="menu-card neon-box-gold reveal">
+        <div class="menu-icon">🔢</div>
+        <h4 class="gold-gradient">数秘術</h4>
+        <p class="menu-price neon-gold">¥3,000</p>
+        <p>生年月日から導き出す運命の数字で、あなたの個性・人生のテーマ・相性を診断します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA: 今夜の居場所 -->
+<section id="cta">
+  <div class="container reveal">
+    <h2 class="section-title neon-cyan">今夜の居場所</h2>
+    <p class="section-subtitle">Tonight's Location</p>
+    <p class="cta-text">
+      akkeyは今夜も、八戸の街のどこかで<br>
+      グラスを傾けながらあなたを待っています。<br>
+      Googleマップで今いるお店をチェックしよう。
+    </p>
+    <a href="https://maps.app.goo.gl/A1dXyYKpKpzVLNpr7" target="_blank" rel="noopener" class="cta-button">📍 今いるお店を見る</a>
+    <p class="cta-note">※ Googleマップの現在地共有でリアルタイム更新されます</p>
+    <p class="cta-note">※ 営業時間外は位置情報が表示されない場合があります</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="elegant-divider" style="margin-bottom:24px;"><span>✦</span></div>
+  <p style="margin-bottom:12px;">
+    <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener">Instagram: @akkey_cream</a>
+  </p>
+  <p>&copy; 2025 akkey_cream. All rights reserved.</p>
+</footer>
+
+<script>
+// ===== Stars =====
+(function createStars() {
+  const container = document.getElementById('stars');
+  const count = 150;
+  for (let i = 0; i < count; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
+    star.style.setProperty('--bright', (.2 + Math.random() * .6).toString());
+    star.style.animationDelay = (Math.random() * 5) + 's';
+    const size = (1 + Math.random() * 1.5);
+    star.style.width = star.style.height = size + 'px';
+    // Some stars have a golden tint
+    if (Math.random() > 0.7) {
+      star.style.background = 'rgba(212,175,55,' + (.5 + Math.random() * .5) + ')';
+    }
+    container.appendChild(star);
+  }
+})();
+
+// ===== Scroll Reveal =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== Tarot Data =====
+const majorArcana = [
+  { num: '0', numLabel: '0 - THE FOOL', name: '愚者', en: 'The Fool', symbol: '🌟',
+    keyword: '自由・冒険・無限の可能性',
+    message: '今のあなたには、新しい冒険が待っています。未知の世界へ飛び込む勇気を持ちましょう。常識や周囲の目を気にせず、心のままに一歩を踏み出すことで、思いもよらない幸運が訪れるでしょう。' },
+  { num: 'I', numLabel: 'I - THE MAGICIAN', name: '魔術師', en: 'The Magician', symbol: '🔮',
+    keyword: '創造力・才能・意志の力',
+    message: 'あなたの中に眠る才能が、今まさに目覚めようとしています。必要なものはすべて手の中にあります。自分の力を信じて行動することで、望む現実を創り出すことができるでしょう。' },
+  { num: 'II', numLabel: 'II - THE HIGH PRIESTESS', name: '女教皇', en: 'The High Priestess', symbol: '📿',
+    keyword: '直感・神秘・内なる声',
+    message: '静かに心の声に耳を傾けてください。論理や分析では得られない、深い叡智があなたの中に宿っています。直感を信じることで、正しい道が自然と見えてくるでしょう。' },
+  { num: 'III', numLabel: 'III - THE EMPRESS', name: '女帝', en: 'The Empress', symbol: '👑',
+    keyword: '豊穣・愛・美しさ',
+    message: '愛と豊かさに満ちた時期が訪れています。自分を大切にし、周囲への愛情を惜しみなく注いでください。美しいものに触れ、五感を満たすことで、さらなる幸運を引き寄せるでしょう。' },
+  { num: 'IV', numLabel: 'IV - THE EMPEROR', name: '皇帝', en: 'The Emperor', symbol: '🦁',
+    keyword: '安定・統率力・責任',
+    message: '今こそリーダーシップを発揮する時です。揺るぎない意志と計画性をもって物事に取り組みましょう。あなたの決断力と行動力が、周囲を導き、大きな成果をもたらすでしょう。' },
+  { num: 'V', numLabel: 'V - THE HIEROPHANT', name: '法王', en: 'The Hierophant', symbol: '🕯️',
+    keyword: '教え・伝統・精神的な導き',
+    message: '信頼できる師や教えとの出会いが近づいています。謙虚な姿勢で学びを深めることで、人生の大切な気づきを得られるでしょう。伝統や慣習の中にも、今のあなたに必要なヒントが隠されています。' },
+  { num: 'VI', numLabel: 'VI - THE LOVERS', name: '恋人', en: 'The Lovers', symbol: '💕',
+    keyword: '愛・選択・絆',
+    message: '心と心が深く結ばれる時期です。恋愛に限らず、大切な人との絆が深まります。人生の大きな選択が訪れることもありますが、心の声に従えば、最良の答えが見つかるでしょう。' },
+  { num: 'VII', numLabel: 'VII - THE CHARIOT', name: '戦車', en: 'The Chariot', symbol: '⚡',
+    keyword: '勝利・前進・意志の力',
+    message: '力強く前進する時です。困難があっても、強い意志で乗り越えていけるでしょう。迷いを断ち切り、目標に向かって突き進むことで、輝かしい勝利を手にすることができます。' },
+  { num: 'VIII', numLabel: 'VIII - STRENGTH', name: '力', en: 'Strength', symbol: '🌹',
+    keyword: '内なる強さ・忍耐・慈悲',
+    message: '本当の強さとは、穏やかな心から生まれます。焦らず、優しさと忍耐を持って状況に向き合いましょう。あなたの内に秘めた力が、静かに、しかし確実に道を切り開いてくれるでしょう。' },
+  { num: 'IX', numLabel: 'IX - THE HERMIT', name: '隠者', en: 'The Hermit', symbol: '🏔️',
+    keyword: '内省・探求・真実の光',
+    message: '一人の時間を大切にしてください。自分自身と深く向き合うことで、人生の本当の意味が見えてきます。外の喧騒から離れ、心の灯火を頼りに進むことで、真の答えに辿り着けるでしょう。' },
+  { num: 'X', numLabel: 'X - WHEEL OF FORTUNE', name: '運命の輪', en: 'Wheel of Fortune', symbol: '🎡',
+    keyword: '転機・幸運・変化の時',
+    message: '運命の歯車が大きく動き始めています。予期せぬ変化やチャンスが訪れるでしょう。この流れに身を任せ、変化を恐れずに受け入れることで、新しいステージへと導かれます。' },
+  { num: 'XI', numLabel: 'XI - JUSTICE', name: '正義', en: 'Justice', symbol: '⚖️',
+    keyword: '公正・バランス・真実',
+    message: '物事を公正な目で見つめ直す時期です。感情に流されず、真実を見極める冷静さが求められています。正しい行いは必ず報われます。バランスを意識して判断を下しましょう。' },
+  { num: 'XII', numLabel: 'XII - THE HANGED MAN', name: '吊るされた男', en: 'The Hanged Man', symbol: '🍃',
+    keyword: '手放し・新たな視点・忍耐',
+    message: '今は立ち止まり、視点を変えてみましょう。一見不利に思える状況の中に、大切な学びが隠されています。執着を手放し、新しい角度から物事を眺めることで、突破口が見えてくるでしょう。' },
+  { num: 'XIII', numLabel: 'XIII - DEATH', name: '死神', en: 'Death', symbol: '🦋',
+    keyword: '変容・再生・新しい始まり',
+    message: '大きな変容の時が訪れています。終わりは新しい始まりの合図です。古いものを手放す勇気を持つことで、あなたは蝶のように美しく生まれ変わることができるでしょう。恐れずに変化を受け入れてください。' },
+  { num: 'XIV', numLabel: 'XIV - TEMPERANCE', name: '節制', en: 'Temperance', symbol: '🌊',
+    keyword: '調和・バランス・癒し',
+    message: '穏やかさと調和が、今のあなたに必要なメッセージです。極端な考えや行動を避け、中庸を心がけましょう。異なるものを上手に融合させることで、心に深い安らぎと満足感が訪れるでしょう。' },
+  { num: 'XV', numLabel: 'XV - THE DEVIL', name: '悪魔', en: 'The Devil', symbol: '🔥',
+    keyword: '解放・欲望の自覚・自由',
+    message: 'あなたを縛っているものは何ですか？無意識の執着や思い込みに気づく時です。鎖は実はいつでも外せるもの。自分の本当の欲求を認め、不要な束縛から自らを解放しましょう。' },
+  { num: 'XVI', numLabel: 'XVI - THE TOWER', name: '塔', en: 'The Tower', symbol: '⚡',
+    keyword: '破壊と再建・真実の露呈・解放',
+    message: '衝撃的な変化が訪れる可能性がありますが、恐れる必要はありません。古い構造が崩れることで、より強く美しいものが築かれます。真実が明らかになり、本当に大切なものが見えてくるでしょう。' },
+  { num: 'XVII', numLabel: 'XVII - THE STAR', name: '星', en: 'The Star', symbol: '⭐',
+    keyword: '希望・インスピレーション・癒し',
+    message: '希望の光があなたを照らしています。困難な時期を乗り越えた先に、美しい未来が待っています。心を開いて宇宙のインスピレーションを受け取りましょう。あなたの願いは必ず届いています。' },
+  { num: 'XVIII', numLabel: 'XVIII - THE MOON', name: '月', en: 'The Moon', symbol: '🌙',
+    keyword: '潜在意識・夢・直感',
+    message: '月の光が、あなたの心の奥深くを照らしています。夢や直感が大切なメッセージを伝えています。不安や幻想に惑わされず、心の深いところにある真実の声に耳を傾けてください。' },
+  { num: 'XIX', numLabel: 'XIX - THE SUN', name: '太陽', en: 'The Sun', symbol: '☀️',
+    keyword: '喜び・成功・生命力',
+    message: '素晴らしい幸運が訪れています！太陽のように輝くエネルギーがあなたを包み、成功と喜びに満ちた日々がやってきます。自信を持って明るく前に進みましょう。あなたの未来は光に満ちています。' },
+  { num: 'XX', numLabel: 'XX - JUDGEMENT', name: '審判', en: 'Judgement', symbol: '🔔',
+    keyword: '覚醒・再生・天命',
+    message: '魂の目覚めの時です。過去を振り返り、すべての経験に意味があったことに気づくでしょう。新たな使命やビジョンが見えてきます。内なる声に従い、本当の自分として生き始める時が来ました。' },
+  { num: 'XXI', numLabel: 'XXI - THE WORLD', name: '世界', en: 'The World', symbol: '🌍',
+    keyword: '完成・達成・統合',
+    message: 'すべてが一つに結ばれ、完成へと向かっています。長い旅の終わりと、新たな旅の始まりが同時に訪れます。あなたはこれまでの経験を通じて大きく成長しました。世界はあなたの味方です。' }
+];
+
+// ===== Card Grid Generation =====
+const grid = document.getElementById('cardGrid');
+let selectedIndex = null;
+let shuffled = [];
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildCards() {
+  grid.innerHTML = '';
+  shuffled = shuffleArray(majorArcana);
+  selectedIndex = null;
+  document.getElementById('retryBtn').style.display = 'none';
+  document.getElementById('tarot-instruction').textContent = '心を落ち着けて、気になるカードをタップしてください';
+
+  shuffled.forEach((card, i) => {
+    const el = document.createElement('div');
+    el.className = 'tarot-card';
+    el.setAttribute('data-index', i);
+    el.innerHTML = `
+      <div class="tarot-card-inner">
+        <div class="tarot-card-back"></div>
+        <div class="tarot-card-front">
+          <span class="card-number">${card.numLabel}</span>
+          <span class="card-symbol">${card.symbol}</span>
+          <span class="card-name">${card.name}</span>
+          <span class="card-name-en">${card.en}</span>
+        </div>
+      </div>
+    `;
+    el.addEventListener('click', () => selectCard(i));
+    grid.appendChild(el);
+  });
+}
+
+function selectCard(index) {
+  if (selectedIndex !== null) return;
+  selectedIndex = index;
+
+  const cards = document.querySelectorAll('.tarot-card');
+  cards.forEach((c, i) => {
+    if (i === index) {
+      c.classList.add('flipped');
+    } else {
+      c.classList.add('dimmed');
+    }
+  });
+
+  document.getElementById('tarot-instruction').textContent = '選ばれたカードは…';
+
+  setTimeout(() => showResult(shuffled[index]), 1200);
+}
+
+function showResult(card) {
+  document.getElementById('resultSymbol').textContent = card.symbol;
+  document.getElementById('resultNumber').textContent = card.numLabel;
+  document.getElementById('resultName').textContent = card.name;
+  document.getElementById('resultNameEn').textContent = card.en;
+  document.getElementById('resultMessage').textContent = card.message;
+  document.getElementById('resultKeyword').textContent = card.keyword;
+  document.getElementById('resultOverlay').classList.add('active');
+  document.getElementById('retryBtn').style.display = 'inline-block';
+}
+
+function closeResult() {
+  document.getElementById('resultOverlay').classList.remove('active');
+}
+
+function resetCards() {
+  buildCards();
+}
+
+// Init
+buildCards();
+</script>
+</body>
+</html>
