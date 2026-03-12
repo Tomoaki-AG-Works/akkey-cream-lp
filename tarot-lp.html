@@ -1004,20 +1004,21 @@ section {
   align-items: center;
 }
 @media (min-width: 640px) {
-  .cta-dual { flex-direction: row; justify-content: center; gap: 28px; }
+  .cta-dual { flex-direction: row; justify-content: center; gap: 20px; flex-wrap: wrap; }
 }
 .cta-button {
   display: inline-block;
-  padding: 18px 48px;
+  padding: 16px 32px;
   border: none;
   color: #fff;
-  font-size: 1rem;
+  font-size: .95rem;
   font-weight: 500;
-  letter-spacing: .15em;
+  letter-spacing: .1em;
   cursor: pointer;
   text-decoration: none;
   transition: all .4s;
   position: relative;
+  white-space: nowrap;
 }
 .cta-button::before,
 .cta-button::after {
@@ -1064,6 +1065,15 @@ section {
   box-shadow: 0 0 50px rgba(212,175,55,.35);
 }
 
+.cta-button--phone {
+  background: linear-gradient(135deg, rgba(76,175,80,.9), rgba(56,142,60,.9));
+  box-shadow: 0 0 30px rgba(76,175,80,.2);
+}
+.cta-button--phone::before, .cta-button--phone::after { border-color: rgba(76,175,80,.6); }
+.cta-button--phone:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 50px rgba(76,175,80,.35);
+}
 .cta-note {
   margin-top: 20px;
   font-size: .78rem;
@@ -1223,8 +1233,9 @@ footer a:hover { color: var(--gold-light); }
         <div class="salon-info-icon">📩</div>
         <div class="salon-info-label">RESERVATION</div>
         <div class="salon-info-text">
-          Instagram DMで受付<br>
-          <strong>@akkey_cream</strong>
+          Instagram DM or 電話で受付<br>
+          <strong>@akkey_cream</strong><br>
+          <strong>📞 080-1673-6363</strong>
         </div>
       </div>
       <div class="salon-info-card neon-box-warm reveal">
@@ -1239,10 +1250,11 @@ footer a:hover { color: var(--gold-light); }
     </div>
     <div class="salon-note">
       ※ 火・水は占い予約のみ対応<br>
-      ※ お気軽にDMでご相談ください
+      ※ お気軽にDM・お電話でご相談ください
     </div>
-    <div style="text-align:center;">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;">
       <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="salon-book-btn">📩 Instagram DMで予約する</a>
+      <a href="tel:08016736363" class="salon-book-btn" style="background:linear-gradient(135deg,rgba(76,175,80,.9),rgba(56,142,60,.9));border-color:rgba(76,175,80,.4);">📞 電話で予約する</a>
     </div>
   </div>
 </section>
@@ -1335,7 +1347,8 @@ footer a:hover { color: var(--gold-light); }
     <br><br>
     <p style="font-size:.83rem;color:rgba(255,255,255,.4);margin-bottom:18px;font-weight:300;letter-spacing:.05em;">より深い鑑定は、直接会ってこそ。</p>
     <div class="result-cta-group">
-      <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="result-cta result-cta--salon">☕ 占いを予約する</a>
+      <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="result-cta result-cta--salon">☕ DMで予約する</a>
+      <a href="tel:08016736363" class="result-cta" style="background:linear-gradient(135deg,rgba(76,175,80,.9),rgba(56,142,60,.9));">📞 電話で予約する</a>
       <a href="https://maps.app.goo.gl/A1dXyYKpKpzVLNpr7" target="_blank" rel="noopener" class="result-cta result-cta--night">🌙 今夜の居場所を見る</a>
     </div>
     <button class="result-close" onclick="closeResult()">閉じる</button>
@@ -1447,10 +1460,11 @@ footer a:hover { color: var(--gold-light); }
       あなたに合ったスタイルで、占いを体験しよう。
     </p>
     <div class="cta-dual">
-      <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="cta-button cta-button--salon">☕ 占いを予約する</a>
+      <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="cta-button cta-button--salon">☕ DMで予約する</a>
+      <a href="tel:08016736363" class="cta-button cta-button--phone">📞 電話で予約する</a>
       <a href="https://maps.app.goo.gl/A1dXyYKpKpzVLNpr7" target="_blank" rel="noopener" class="cta-button cta-button--night">🌙 今夜の居場所を見る</a>
     </div>
-    <p class="cta-note">※ ご予約は Instagram DM（@akkey_cream）から</p>
+    <p class="cta-note">※ ご予約は Instagram DM（@akkey_cream）または お電話（080-1673-6363）から</p>
     <p class="cta-note">※ 夜の居場所は Google マップの現在地共有でリアルタイム更新されます</p>
   </div>
 </section>
@@ -1458,8 +1472,11 @@ footer a:hover { color: var(--gold-light); }
 <!-- Footer -->
 <footer>
   <div class="elegant-divider" style="margin-bottom:24px;"><span>✦</span></div>
-  <p style="margin-bottom:12px;">
+  <p style="margin-bottom:8px;">
     <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener">Instagram: @akkey_cream</a>
+  </p>
+  <p style="margin-bottom:12px;">
+    <a href="tel:08016736363" style="color:rgba(255,255,255,.5);text-decoration:none;letter-spacing:.08em;">📞 080-1673-6363</a>
   </p>
   <p>&copy; 2025 akkey_cream. All rights reserved.</p>
 </footer>
