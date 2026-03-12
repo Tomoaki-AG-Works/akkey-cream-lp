@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>akkey_cream | 八戸の流しの占い師</title>
+<title>akkey_cream | 八戸の占い師 — 昼はサロン、夜は流し</title>
+<meta name="description" content="八戸の占い師 akkey_cream。昼は占いサロンでじっくり鑑定、夜はみろく横丁を中心に流しの占い師として活動中。タロット・手相・人相・数秘術。">
+<meta property="og:title" content="akkey_cream | 八戸の占い師">
+<meta property="og:description" content="昼は占いサロンでじっくり。夜は流しでふらっと。八戸の街であなたを待っています。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tomoaki-ag-works.github.io/akkey-cream-lp/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -18,6 +23,8 @@
   --gold-dark: #a67c00;
   --deep-blue: #0a0a2e;
   --dark: #050510;
+  --warm: #ff9f43;
+  --warm-light: #ffd093;
   --card-w: 100px;
   --card-h: 150px;
   --font-serif: 'Cormorant Garamond', 'Georgia', serif;
@@ -76,13 +83,13 @@ body {
   color: var(--cyan);
   text-shadow: 0 0 7px var(--cyan), 0 0 20px var(--cyan), 0 0 42px var(--cyan), 0 0 80px rgba(0,240,255,.3);
 }
-.neon-magenta {
-  color: var(--magenta);
-  text-shadow: 0 0 7px var(--magenta), 0 0 20px var(--magenta), 0 0 42px var(--magenta), 0 0 80px rgba(255,0,255,.3);
-}
 .neon-gold {
   color: var(--gold-light);
   text-shadow: 0 0 7px var(--gold), 0 0 20px var(--gold), 0 0 42px rgba(212,175,55,.4);
+}
+.neon-warm {
+  color: var(--warm-light);
+  text-shadow: 0 0 7px var(--warm), 0 0 20px var(--warm), 0 0 42px rgba(255,159,67,.4);
 }
 .neon-box-gold {
   border: 1px solid rgba(212,175,55,.4);
@@ -92,9 +99,9 @@ body {
   border: 1px solid rgba(0,240,255,.25);
   box-shadow: 0 0 12px rgba(0,240,255,.08), inset 0 0 12px rgba(0,240,255,.05);
 }
-.neon-box-magenta {
-  border: 1px solid rgba(255,0,255,.25);
-  box-shadow: 0 0 12px rgba(255,0,255,.08), inset 0 0 12px rgba(255,0,255,.05);
+.neon-box-warm {
+  border: 1px solid rgba(255,159,67,.3);
+  box-shadow: 0 0 12px rgba(255,159,67,.08), inset 0 0 12px rgba(255,159,67,.05);
 }
 
 /* ===== Elegant Divider ===== */
@@ -171,15 +178,35 @@ section {
   letter-spacing: 1em;
   margin: 12px 0;
 }
-#hero .moon {
-  font-size: clamp(3rem, 10vw, 5rem);
+#hero .hero-icons {
+  font-size: clamp(2.4rem, 8vw, 4rem);
   margin-bottom: 24px;
-  animation: float 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(212,175,55,.4));
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
 }
-@keyframes float {
+#hero .hero-icons .icon-sun {
+  animation: floatSun 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255,159,67,.5));
+}
+#hero .hero-icons .icon-moon {
+  animation: floatMoon 4s ease-in-out infinite .5s;
+  filter: drop-shadow(0 0 20px rgba(212,175,55,.5));
+}
+#hero .hero-icons .icon-divider {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: var(--gold);
+  opacity: .4;
+}
+@keyframes floatSun {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes floatMoon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 #hero h1 {
   font-family: var(--font-serif);
@@ -200,21 +227,37 @@ section {
 #hero .subtitle {
   font-size: clamp(.9rem, 2.5vw, 1.15rem);
   color: rgba(255,255,255,.55);
-  margin-bottom: 50px;
+  margin-bottom: 12px;
   letter-spacing: .25em;
   font-weight: 300;
 }
+#hero .subtitle-two {
+  font-size: clamp(.82rem, 2vw, .95rem);
+  color: rgba(255,255,255,.35);
+  margin-bottom: 50px;
+  letter-spacing: .15em;
+  font-weight: 300;
+  line-height: 2;
+}
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+@media (min-width: 640px) {
+  .hero-cta-group { flex-direction: row; gap: 24px; }
+}
 .hero-cta {
   display: inline-block;
-  padding: 18px 56px;
+  padding: 18px 44px;
   border: 1px solid var(--gold);
-  border-radius: 0;
   color: var(--gold-light);
   text-decoration: none;
   font-family: var(--font-sans);
-  font-size: .95rem;
+  font-size: .9rem;
   font-weight: 400;
-  letter-spacing: .2em;
+  letter-spacing: .15em;
   transition: all .4s;
   box-shadow: 0 0 20px rgba(212,175,55,.15);
   cursor: pointer;
@@ -247,9 +290,199 @@ section {
 .hero-cta:hover::before { top: -6px; left: -6px; }
 .hero-cta:hover::after { bottom: -6px; right: -6px; }
 
+/* ===== Two Styles ===== */
+#styles {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--deep-blue) 100%);
+}
+.styles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .styles-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+.style-card {
+  padding: 48px 32px;
+  background: rgba(10,10,46,.4);
+  backdrop-filter: blur(16px);
+  text-align: center;
+  transition: transform .4s, box-shadow .4s;
+  position: relative;
+  overflow: hidden;
+}
+.style-card::before {
+  content: "";
+  position: absolute;
+  top: 10px; left: 10px; right: 10px; bottom: 10px;
+  border: 1px solid rgba(212,175,55,.1);
+  pointer-events: none;
+}
+.style-card:hover {
+  transform: translateY(-4px);
+}
+.style-card--day { border: 1px solid rgba(255,159,67,.3); box-shadow: 0 0 20px rgba(255,159,67,.08); }
+.style-card--day:hover { box-shadow: 0 0 40px rgba(255,159,67,.15); }
+.style-card--day::after {
+  content: "";
+  position: absolute;
+  top: -50%; right: -30%;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(255,159,67,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.style-card--night { border: 1px solid rgba(0,240,255,.25); box-shadow: 0 0 20px rgba(0,240,255,.08); }
+.style-card--night:hover { box-shadow: 0 0 40px rgba(0,240,255,.15); }
+.style-card--night::after {
+  content: "";
+  position: absolute;
+  top: -50%; right: -30%;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(0,240,255,.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.style-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.style-card--day .style-icon { filter: drop-shadow(0 0 15px rgba(255,159,67,.4)); }
+.style-card--night .style-icon { filter: drop-shadow(0 0 15px rgba(0,240,255,.4)); }
+.style-label {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.style-card--day .style-label { color: var(--warm); }
+.style-card--night .style-label { color: var(--cyan); }
+.style-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: .1em;
+  margin-bottom: 16px;
+}
+.style-desc {
+  font-size: .88rem;
+  color: rgba(255,255,255,.55);
+  font-weight: 300;
+  line-height: 2;
+  margin-bottom: 24px;
+}
+.style-details {
+  font-size: .82rem;
+  color: rgba(255,255,255,.4);
+  line-height: 2;
+  padding-top: 20px;
+  border-top: 1px solid rgba(212,175,55,.1);
+}
+.style-cta {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 32px;
+  text-decoration: none;
+  font-size: .85rem;
+  letter-spacing: .1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+.style-cta--day {
+  border: 1px solid rgba(255,159,67,.4);
+  color: var(--warm-light);
+}
+.style-cta--day:hover {
+  background: rgba(255,159,67,.08);
+  box-shadow: 0 0 20px rgba(255,159,67,.2);
+}
+.style-cta--night {
+  border: 1px solid rgba(0,240,255,.3);
+  color: var(--cyan);
+}
+.style-cta--night:hover {
+  background: rgba(0,240,255,.06);
+  box-shadow: 0 0 20px rgba(0,240,255,.15);
+}
+
+/* ===== Salon Detail ===== */
+#salon {
+  background: radial-gradient(ellipse at 50% 30%, rgba(80,40,0,.12) 0%, transparent 60%),
+              var(--deep-blue);
+}
+.salon-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .salon-info-grid { grid-template-columns: 1fr 1fr; }
+}
+.salon-info-card {
+  padding: 32px 24px;
+  background: rgba(10,10,46,.35);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  position: relative;
+}
+.salon-info-card::before {
+  content: "";
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 1px solid rgba(255,159,67,.08);
+  pointer-events: none;
+}
+.salon-info-icon {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 8px rgba(255,159,67,.3));
+}
+.salon-info-label {
+  font-family: var(--font-serif);
+  font-size: .75rem;
+  color: var(--warm);
+  letter-spacing: .2em;
+  margin-bottom: 8px;
+}
+.salon-info-text {
+  font-size: .9rem;
+  color: rgba(255,255,255,.7);
+  line-height: 1.9;
+}
+.salon-info-text strong {
+  color: rgba(255,255,255,.9);
+  font-weight: 500;
+}
+.salon-note {
+  text-align: center;
+  margin-top: 40px;
+  font-size: .82rem;
+  color: rgba(255,255,255,.35);
+  line-height: 2;
+}
+.salon-book-btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 16px 48px;
+  background: linear-gradient(135deg, rgba(255,159,67,.85), rgba(200,120,30,.9));
+  border: none;
+  color: #fff;
+  font-size: .95rem;
+  letter-spacing: .15em;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(255,159,67,.2);
+  transition: all .4s;
+}
+.salon-book-btn:hover {
+  box-shadow: 0 0 50px rgba(255,159,67,.35);
+  transform: translateY(-2px);
+}
+
 /* ===== Profile ===== */
 #profile {
-  background: linear-gradient(180deg, var(--dark) 0%, var(--deep-blue) 100%);
+  background: linear-gradient(180deg, var(--deep-blue) 0%, rgba(20,5,50,.5) 100%);
 }
 .profile-card {
   display: flex;
@@ -331,7 +564,6 @@ section {
 }
 .profile-tags span {
   padding: 5px 16px;
-  border-radius: 0;
   font-size: .75rem;
   letter-spacing: .08em;
   border: 1px solid rgba(212,175,55,.3);
@@ -590,23 +822,40 @@ section {
   letter-spacing: .08em;
   margin-bottom: 32px;
 }
-.result-cta {
-  display: inline-block;
-  padding: 16px 44px;
-  background: linear-gradient(135deg, rgba(212,175,55,.9), rgba(166,124,0,.9));
-  border: none;
-  border-radius: 0;
-  color: #fff;
-  font-size: .95rem;
-  letter-spacing: .12em;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 0 30px rgba(212,175,55,.25);
-  transition: all .4s;
+.result-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
   margin-bottom: 18px;
 }
-.result-cta:hover {
-  box-shadow: 0 0 50px rgba(212,175,55,.4);
+.result-cta {
+  display: inline-block;
+  padding: 14px 36px;
+  border: none;
+  border-radius: 0;
+  font-size: .9rem;
+  letter-spacing: .1em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .4s;
+}
+.result-cta--salon {
+  background: linear-gradient(135deg, rgba(255,159,67,.85), rgba(200,120,30,.9));
+  color: #fff;
+  box-shadow: 0 0 25px rgba(255,159,67,.2);
+}
+.result-cta--salon:hover {
+  box-shadow: 0 0 40px rgba(255,159,67,.35);
+  transform: translateY(-2px);
+}
+.result-cta--night {
+  background: linear-gradient(135deg, rgba(212,175,55,.9), rgba(166,124,0,.9));
+  color: #fff;
+  box-shadow: 0 0 25px rgba(212,175,55,.2);
+}
+.result-cta--night:hover {
+  box-shadow: 0 0 40px rgba(212,175,55,.35);
   transform: translateY(-2px);
 }
 .result-close {
@@ -629,7 +878,6 @@ section {
   border: 1px solid rgba(212,175,55,.4);
   color: var(--gold-light);
   padding: 12px 36px;
-  border-radius: 0;
   font-size: .88rem;
   letter-spacing: .1em;
   cursor: pointer;
@@ -638,62 +886,6 @@ section {
 .retry-btn:hover {
   background: rgba(212,175,55,.08);
   box-shadow: 0 0 20px rgba(212,175,55,.2);
-}
-
-/* ===== How To ===== */
-#howto {
-  background: linear-gradient(180deg, var(--deep-blue) 0%, rgba(20,5,50,.6) 100%);
-}
-.howto-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-@media (min-width: 768px) {
-  .howto-grid { grid-template-columns: repeat(3, 1fr); }
-}
-.howto-card {
-  padding: 40px 28px;
-  background: rgba(10,10,46,.35);
-  backdrop-filter: blur(8px);
-  text-align: center;
-  transition: transform .4s, box-shadow .4s;
-  position: relative;
-}
-.howto-card::before {
-  content: "";
-  position: absolute;
-  top: 8px; left: 8px; right: 8px; bottom: 8px;
-  border: 1px solid rgba(212,175,55,.08);
-  pointer-events: none;
-}
-.howto-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 30px rgba(212,175,55,.1);
-}
-.howto-card .step-icon {
-  font-size: 2.4rem;
-  margin-bottom: 16px;
-  filter: drop-shadow(0 0 8px rgba(212,175,55,.3));
-}
-.howto-card .step-label {
-  font-family: var(--font-serif);
-  font-size: .75rem;
-  color: var(--gold);
-  letter-spacing: .3em;
-  margin-bottom: 8px;
-}
-.howto-card .step-title {
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 12px;
-  letter-spacing: .05em;
-}
-.howto-card .step-desc {
-  font-size: .85rem;
-  color: rgba(255,255,255,.5);
-  font-weight: 300;
-  line-height: 1.8;
 }
 
 /* ===== Menu ===== */
@@ -741,7 +933,7 @@ section {
 }
 .menu-card .menu-price {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 400;
   margin-bottom: 12px;
   letter-spacing: .05em;
@@ -751,6 +943,35 @@ section {
   color: rgba(255,255,255,.5);
   font-weight: 300;
   line-height: 1.8;
+}
+.menu-card .menu-sub-price {
+  font-size: .8rem;
+  color: rgba(255,255,255,.45);
+  margin-top: 8px;
+  line-height: 1.8;
+}
+/* Combo cards - full width */
+.menu-grid--combo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+@media (min-width: 640px) {
+  .menu-grid--combo { grid-template-columns: repeat(2, 1fr); }
+}
+.menu-card--combo {
+  background: rgba(10,10,46,.45);
+  border: 1px solid rgba(212,175,55,.3);
+}
+.menu-card--combo .combo-badge {
+  display: inline-block;
+  padding: 3px 14px;
+  font-size: .7rem;
+  letter-spacing: .15em;
+  border: 1px solid rgba(212,175,55,.4);
+  color: var(--gold);
+  margin-bottom: 12px;
 }
 
 /* ===== CTA ===== */
@@ -770,51 +991,73 @@ section {
   font-weight: 300;
   line-height: 2.2;
 }
+.cta-dual {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+@media (min-width: 640px) {
+  .cta-dual { flex-direction: row; justify-content: center; gap: 28px; }
+}
 .cta-button {
   display: inline-block;
-  padding: 20px 64px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  padding: 18px 48px;
   border: none;
-  border-radius: 0;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
-  letter-spacing: .2em;
+  letter-spacing: .15em;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 0 40px rgba(212,175,55,.25), 0 0 80px rgba(212,175,55,.08);
   transition: all .4s;
-  animation: ctaPulse 2.5s ease-in-out infinite;
   position: relative;
 }
 .cta-button::before,
 .cta-button::after {
   content: "";
   position: absolute;
-  width: 16px;
-  height: 16px;
-  border-color: var(--gold-light);
+  width: 14px;
+  height: 14px;
   border-style: solid;
   transition: all .4s;
 }
 .cta-button::before {
-  top: -4px; left: -4px;
+  top: -3px; left: -3px;
   border-width: 1px 0 0 1px;
 }
 .cta-button::after {
-  bottom: -4px; right: -4px;
+  bottom: -3px; right: -3px;
   border-width: 0 1px 1px 0;
 }
-@keyframes ctaPulse {
-  0%, 100% { box-shadow: 0 0 40px rgba(212,175,55,.25), 0 0 80px rgba(212,175,55,.08); }
-  50% { box-shadow: 0 0 50px rgba(212,175,55,.35), 0 0 100px rgba(212,175,55,.12); }
+.cta-button:hover::before { top: -7px; left: -7px; }
+.cta-button:hover::after { bottom: -7px; right: -7px; }
+
+.cta-button--salon {
+  background: linear-gradient(135deg, rgba(255,159,67,.9), rgba(200,120,30,.9));
+  box-shadow: 0 0 30px rgba(255,159,67,.2);
 }
-.cta-button:hover {
+.cta-button--salon::before, .cta-button--salon::after { border-color: var(--warm-light); }
+.cta-button--salon:hover {
   transform: translateY(-3px);
-  box-shadow: 0 0 60px rgba(212,175,55,.4), 0 0 120px rgba(212,175,55,.15);
+  box-shadow: 0 0 50px rgba(255,159,67,.35);
 }
-.cta-button:hover::before { top: -8px; left: -8px; }
-.cta-button:hover::after { bottom: -8px; right: -8px; }
+
+.cta-button--night {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  box-shadow: 0 0 30px rgba(212,175,55,.2);
+  animation: ctaPulse 2.5s ease-in-out infinite;
+}
+.cta-button--night::before, .cta-button--night::after { border-color: var(--gold-light); }
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(212,175,55,.2); }
+  50% { box-shadow: 0 0 45px rgba(212,175,55,.3); }
+}
+.cta-button--night:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 50px rgba(212,175,55,.35);
+}
+
 .cta-note {
   margin-top: 20px;
   font-size: .78rem;
@@ -851,7 +1094,7 @@ footer a:hover { color: var(--gold-light); }
   transform: translateY(0);
 }
 
-/* ===== Elegant Scrollbar ===== */
+/* ===== Scrollbar ===== */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--dark); }
 ::-webkit-scrollbar-thumb {
@@ -869,13 +1112,128 @@ footer a:hover { color: var(--gold-light); }
 <!-- Hero -->
 <section id="hero">
   <div class="hero-ornament-top">— ✦ —</div>
-  <div class="moon">🌙</div>
+  <div class="hero-icons">
+    <span class="icon-sun">☀️</span>
+    <span class="icon-divider">&</span>
+    <span class="icon-moon">🌙</span>
+  </div>
   <h1 class="neon-cyan">akkey_cream</h1>
-  <p class="subtitle">八戸の夜を渡り歩く、流しの占い師</p>
-  <div class="hero-ornament-bottom">✦</div>
-  <br>
-  <a href="#tarot" class="hero-cta">無料タロット占いを体験する</a>
+  <p class="subtitle">八戸の占い師</p>
+  <p class="subtitle-two">
+    昼は占いサロンでじっくりと。<br>
+    夜は流しの占い師としてふらりと。
+  </p>
+  <div class="hero-ornament-bottom" style="font-family:var(--font-serif);color:var(--gold);opacity:.4;font-size:1.2rem;letter-spacing:1em;margin-bottom:32px;">✦</div>
+  <div class="hero-cta-group">
+    <a href="#salon" class="hero-cta">☀️ サロンで予約する</a>
+    <a href="#tarot" class="hero-cta">🔮 タロット占いを体験</a>
+  </div>
 </section>
+
+<!-- Two Styles -->
+<section id="styles">
+  <div class="container">
+    <h2 class="section-title gold-gradient reveal">2つのスタイル</h2>
+    <p class="section-subtitle reveal">Two Styles</p>
+    <div class="styles-grid">
+      <!-- Day -->
+      <div class="style-card style-card--day neon-box-warm reveal">
+        <div class="style-icon">☀️</div>
+        <div class="style-label">DAYTIME</div>
+        <div class="style-name neon-warm">占いサロン</div>
+        <div class="style-desc">
+          落ち着いた空間で、あなたのためだけの時間。<br>
+          じっくりと向き合い、心の奥にある答えを<br>
+          一緒に見つけていきます。
+        </div>
+        <div class="style-details">
+          📍 八戸市内（詳細は予約時にご案内）<br>
+          🕐 日・月 13:00〜22:00<br>
+          🕐 他曜日 13:00〜16:00（要予約）
+        </div>
+        <a href="#salon" class="style-cta style-cta--day">詳しく見る →</a>
+      </div>
+      <!-- Night -->
+      <div class="style-card style-card--night neon-box-cyan reveal">
+        <div class="style-icon">🌙</div>
+        <div class="style-label">NIGHTTIME</div>
+        <div class="style-name neon-cyan">流しの占い師</div>
+        <div class="style-desc">
+          八戸の夜を渡り歩く、流しの占い師。<br>
+          お酒の席だからこそ聞ける本音に寄り添い、<br>
+          カードがメッセージをお届けします。
+        </div>
+        <div class="style-details">
+          📍 みろく横丁・八戸中心街<br>
+          🕐 夜〜ラストまで<br>
+          🗓️ 月・木〜日（火・水 基本お休み）
+        </div>
+        <a href="https://maps.app.goo.gl/A1dXyYKpKpzVLNpr7" target="_blank" rel="noopener" class="style-cta style-cta--night">今夜の居場所を見る →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div style="position:relative;z-index:1;padding:20px 0;">
+  <div class="elegant-divider"><span>☀️</span></div>
+</div>
+
+<!-- Salon Detail -->
+<section id="salon">
+  <div class="container">
+    <h2 class="section-title neon-warm reveal">占いサロン</h2>
+    <p class="section-subtitle reveal">Fortune Telling Salon</p>
+
+    <div class="salon-info-grid">
+      <div class="salon-info-card neon-box-warm reveal">
+        <div class="salon-info-icon">📍</div>
+        <div class="salon-info-label">LOCATION</div>
+        <div class="salon-info-text">
+          <strong>八戸市内</strong><br>
+          ※ 詳細な場所は予約時にご案内します
+        </div>
+      </div>
+      <div class="salon-info-card neon-box-warm reveal">
+        <div class="salon-info-icon">🕐</div>
+        <div class="salon-info-label">HOURS</div>
+        <div class="salon-info-text">
+          <strong>日曜・月曜</strong> 13:00〜22:00<br>
+          <strong>他曜日</strong> 13:00〜16:00（要予約）
+        </div>
+      </div>
+      <div class="salon-info-card neon-box-warm reveal">
+        <div class="salon-info-icon">📩</div>
+        <div class="salon-info-label">RESERVATION</div>
+        <div class="salon-info-text">
+          Instagram DMで受付<br>
+          <strong>@akkey_cream</strong>
+        </div>
+      </div>
+      <div class="salon-info-card neon-box-warm reveal">
+        <div class="salon-info-icon">✨</div>
+        <div class="salon-info-label">STYLE</div>
+        <div class="salon-info-text">
+          完全個別対応<br>
+          リラックスした空間で<br>
+          じっくり鑑定
+        </div>
+      </div>
+    </div>
+    <div class="salon-note">
+      ※ 火・水曜日は基本お休みですが、予約対応可能な場合があります<br>
+      ※ お気軽にDMでご相談ください
+    </div>
+    <div style="text-align:center;">
+      <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="salon-book-btn">📩 Instagram DMで予約する</a>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div style="position:relative;z-index:1;padding:20px 0;">
+  <div class="elegant-divider"><span>✦</span></div>
+</div>
 
 <!-- Profile -->
 <section id="profile">
@@ -886,19 +1244,24 @@ footer a:hover { color: var(--gold-light); }
       <div class="profile-avatar">🔮</div>
       <div class="profile-info">
         <h3 class="gold-gradient">akkey_cream</h3>
-        <p class="profile-title-sub">流しの占い師 / 夜の占い師</p>
+        <p class="profile-title-sub">占い師 / 八戸</p>
         <p>
-          八戸市内、夜の時間帯を中心に活動する流しの占い師。
-          みろく横丁をはじめとする八戸中心街の飲み屋を渡り歩き、対面での占いを行っています。
-          お酒の席だからこそ聞ける本音に寄り添い、カードや手のひらを通じて心の奥にある答えを引き出します。
+          八戸市を拠点に活動する占い師。
+          昼は占いサロンで落ち着いた空間でのじっくり鑑定、
+          夜はみろく横丁をはじめとする飲み屋を渡り歩く流しの占い師として活動中。
+        </p>
+        <p>
+          お酒の席でも、サロンの静かな空間でも、
+          カードや手のひらを通じて心の奥にある答えを引き出します。
         </p>
         <p style="font-style:italic;color:rgba(255,255,255,.45);">
-          「占いは構えて受けるものじゃない。グラス片手に、ふと気になった時がベストタイミング。
-          今夜、あなたのいるお店に現れるかもしれません。」
+          「占いは構えて受けるものじゃない。ふと気になった時がベストタイミング。」
         </p>
         <p class="profile-detail">
-          📍 活動エリア：八戸市中心街・みろく横丁 周辺<br>
-          🕐 月・木〜日 / 13:00〜ラストまで（火・水 基本お休み ※予約対応可）
+          ☀️ サロン：八戸市内（予約時にご案内）<br>
+          🌙 流し：みろく横丁・八戸中心街 周辺<br>
+          🕐 日・月 13:00〜22:00 / 他曜日 13:00〜16:00（要予約）<br>
+          🗓️ 火・水 基本お休み（予約対応可）
         </p>
         <div class="profile-tags">
           <span>タロット</span>
@@ -906,6 +1269,8 @@ footer a:hover { color: var(--gold-light); }
           <span>人相</span>
           <span>数秘術</span>
           <span>対面鑑定</span>
+          <span>サロン</span>
+          <span>流し</span>
           <span>みろく横丁</span>
         </div>
         <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="profile-insta">
@@ -915,6 +1280,11 @@ footer a:hover { color: var(--gold-light); }
     </div>
   </div>
 </section>
+
+<!-- Divider -->
+<div style="position:relative;z-index:1;padding:20px 0;">
+  <div class="elegant-divider"><span>🔮</span></div>
+</div>
 
 <!-- Tarot Demo -->
 <section id="tarot">
@@ -946,44 +1316,14 @@ footer a:hover { color: var(--gold-light); }
     <div class="result-message" id="resultMessage"></div>
     <div class="result-keyword" id="resultKeyword"></div>
     <br><br>
-    <p style="font-size:.83rem;color:rgba(255,255,255,.4);margin-bottom:18px;font-weight:300;letter-spacing:.05em;">より深い鑑定は、直接会ってこそ。<br>今夜akkeyがいるお店を確認しよう。</p>
-    <a href="https://maps.app.goo.gl/A1dXyYKpKpzVLNpr7" target="_blank" rel="noopener" class="result-cta">📍 今夜の居場所を見る</a>
+    <p style="font-size:.83rem;color:rgba(255,255,255,.4);margin-bottom:18px;font-weight:300;letter-spacing:.05em;">より深い鑑定は、直接会ってこそ。</p>
+    <div class="result-cta-group">
+      <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="result-cta result-cta--salon">☀️ サロンを予約する</a>
+      <a href="https://maps.app.goo.gl/A1dXyYKpKpzVLNpr7" target="_blank" rel="noopener" class="result-cta result-cta--night">🌙 今夜の居場所を見る</a>
+    </div>
     <button class="result-close" onclick="closeResult()">閉じる</button>
   </div>
 </div>
-
-<!-- Divider -->
-<div style="position:relative;z-index:1;padding:20px 0;">
-  <div class="elegant-divider"><span>✦</span></div>
-</div>
-
-<!-- How it works -->
-<section id="howto">
-  <div class="container">
-    <h2 class="section-title gold-gradient reveal">akkeyに会うには</h2>
-    <p class="section-subtitle reveal">How to Meet</p>
-    <div class="howto-grid">
-      <div class="howto-card neon-box-gold reveal">
-        <div class="step-icon">📍</div>
-        <div class="step-label">STEP 01</div>
-        <div class="step-title gold-gradient">居場所をチェック</div>
-        <div class="step-desc">下のボタンからGoogleマップでakkeyの現在地をリアルタイムで確認。今夜どのお店にいるかがわかります。</div>
-      </div>
-      <div class="howto-card neon-box-gold reveal">
-        <div class="step-icon">🍸</div>
-        <div class="step-label">STEP 02</div>
-        <div class="step-title gold-gradient">お店に行く</div>
-        <div class="step-desc">akkeyがいるお店に足を運んでください。飲み物を片手に、気軽に声をかけてもらえればOKです。</div>
-      </div>
-      <div class="howto-card neon-box-gold reveal">
-        <div class="step-icon">🔮</div>
-        <div class="step-label">STEP 03</div>
-        <div class="step-title gold-gradient">その場で鑑定</div>
-        <div class="step-desc">お酒の席でリラックスしながら、タロットカードがあなたへのメッセージをお届けします。</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Divider -->
 <div style="position:relative;z-index:1;padding:20px 0;">
@@ -996,47 +1336,91 @@ footer a:hover { color: var(--gold-light); }
     <h2 class="section-title gold-gradient reveal">鑑定メニュー</h2>
     <p class="section-subtitle reveal">Menu & Price</p>
     <div class="menu-grid">
+      <!-- タロット -->
       <div class="menu-card neon-box-gold reveal">
         <div class="menu-icon">🃏</div>
-        <h4 class="gold-gradient">タロット占い</h4>
+        <h4 class="gold-gradient">タロットカード</h4>
         <p class="menu-price neon-gold">¥2,000〜</p>
-        <p>大アルカナ・小アルカナを使い、あなたの悩みや未来をカードが読み解きます。恋愛・仕事・人生の選択に。</p>
+        <p>仕事・お金・対人・恋愛・健康…<br>どんなテーマでもカードが読み解きます。</p>
+        <div class="menu-sub-price">
+          1件 ¥2,000 / 2件 ¥3,000<br>
+          +1件ごとに +¥1,000
+        </div>
       </div>
+      <!-- 深掘り鑑定 -->
+      <div class="menu-card neon-box-gold reveal">
+        <div class="menu-icon">🔍</div>
+        <h4 class="gold-gradient">深掘り鑑定</h4>
+        <p class="menu-price neon-gold">¥4,000〜</p>
+        <p>一つのテーマを深く掘り下げる集中鑑定。<br>根本的な原因と解決策を導き出します。</p>
+        <div class="menu-sub-price">
+          深掘り単体 ¥4,000<br>
+          タロット+深掘りセット ¥5,000
+        </div>
+      </div>
+      <!-- 手相 -->
       <div class="menu-card neon-box-gold reveal">
         <div class="menu-icon">✋</div>
         <h4 class="gold-gradient">手相占い</h4>
-        <p class="menu-price neon-gold">¥1,000〜¥3,000</p>
-        <p>あなたの手のひらに刻まれた線から、性格・才能・運命の流れを読み取ります。</p>
+        <p class="menu-price neon-gold">¥2,000〜</p>
+        <p>手のひらに刻まれた線から、<br>性格・才能・運命の流れを読み取ります。</p>
+        <div class="menu-sub-price">
+          4線鑑定 ¥2,000<br>
+          4線+全体鑑定 ¥3,000
+        </div>
       </div>
+      <!-- 人相 -->
       <div class="menu-card neon-box-gold reveal">
         <div class="menu-icon">👤</div>
         <h4 class="gold-gradient">人相占い</h4>
         <p class="menu-price neon-gold">¥2,000〜¥3,000</p>
-        <p>顔のパーツや表情から、あなたの本質や運気の流れを鑑定。第一印象の秘密がわかります。</p>
+        <p>顔のパーツや表情から本質や運気を鑑定。<br>お支払い金額は満足度にお任せします。</p>
       </div>
+      <!-- 数秘術 -->
       <div class="menu-card neon-box-gold reveal">
         <div class="menu-icon">🔢</div>
         <h4 class="gold-gradient">数秘術</h4>
         <p class="menu-price neon-gold">¥3,000</p>
-        <p>生年月日から導き出す運命の数字で、あなたの個性・人生のテーマ・相性を診断します。</p>
+        <p>生年月日から導き出す運命の数字で<br>あなたの個性と9年間期の長期運勢を診断。</p>
+      </div>
+    </div>
+
+    <!-- Combo Courses -->
+    <div class="menu-grid--combo">
+      <div class="menu-card menu-card--combo neon-box-gold reveal">
+        <div class="menu-icon">💬</div>
+        <div class="combo-badge">SPECIAL</div>
+        <h4 class="gold-gradient">話しホーダイコース</h4>
+        <p class="menu-price neon-gold">¥15,000</p>
+        <p>お悩みや愚痴を話しながら占いもできる、<br>前に進むためのコース。最大2時間。</p>
+      </div>
+      <div class="menu-card menu-card--combo neon-box-gold reveal">
+        <div class="menu-icon">🎯</div>
+        <div class="combo-badge">COMBO</div>
+        <h4 class="gold-gradient">自由コース</h4>
+        <p class="menu-price neon-gold">¥5,000</p>
+        <p>お好きなメニューを2つ選んで組み合わせ。<br>あなただけのオーダーメイド鑑定。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA: 今夜の居場所 -->
+<!-- CTA -->
 <section id="cta">
   <div class="container reveal">
-    <h2 class="section-title neon-cyan">今夜の居場所</h2>
-    <p class="section-subtitle">Tonight's Location</p>
+    <h2 class="section-title neon-cyan">会いに行こう</h2>
+    <p class="section-subtitle">Let's Meet</p>
     <p class="cta-text">
-      akkeyは今夜も、八戸の街のどこかで<br>
-      グラスを傾けながらあなたを待っています。<br>
-      Googleマップで今いるお店をチェックしよう。
+      昼はサロンでじっくりと。<br>
+      夜は八戸の街のどこかでふらりと。<br>
+      あなたに合ったスタイルで、占いを体験しよう。
     </p>
-    <a href="https://maps.app.goo.gl/A1dXyYKpKpzVLNpr7" target="_blank" rel="noopener" class="cta-button">📍 今いるお店を見る</a>
-    <p class="cta-note">※ Googleマップの現在地共有でリアルタイム更新されます</p>
-    <p class="cta-note">※ 営業時間外は位置情報が表示されない場合があります</p>
+    <div class="cta-dual">
+      <a href="https://www.instagram.com/akkey_cream/" target="_blank" rel="noopener" class="cta-button cta-button--salon">☀️ サロンを予約する</a>
+      <a href="https://maps.app.goo.gl/A1dXyYKpKpzVLNpr7" target="_blank" rel="noopener" class="cta-button cta-button--night">🌙 今夜の居場所を見る</a>
+    </div>
+    <p class="cta-note">※ サロンのご予約は Instagram DM（@akkey_cream）から</p>
+    <p class="cta-note">※ 夜の居場所は Google マップの現在地共有でリアルタイム更新されます</p>
   </div>
 </section>
 
@@ -1064,7 +1448,6 @@ footer a:hover { color: var(--gold-light); }
     star.style.animationDelay = (Math.random() * 5) + 's';
     const size = (1 + Math.random() * 1.5);
     star.style.width = star.style.height = size + 'px';
-    // Some stars have a golden tint
     if (Math.random() > 0.7) {
       star.style.background = 'rgba(212,175,55,' + (.5 + Math.random() * .5) + ')';
     }
@@ -1196,7 +1579,7 @@ const majorArcana = [
 const grid = document.getElementById('cardGrid');
 let selectedIndex = null;
 let shuffled = [];
-let reversedFlags = []; // true = reversed for each card position
+let reversedFlags = [];
 
 function shuffleArray(arr) {
   const a = [...arr];
@@ -1210,7 +1593,6 @@ function shuffleArray(arr) {
 function buildCards() {
   grid.innerHTML = '';
   shuffled = shuffleArray(majorArcana);
-  // 50% chance each card is reversed
   reversedFlags = shuffled.map(() => Math.random() < 0.5);
   selectedIndex = null;
   document.getElementById('retryBtn').style.display = 'none';
